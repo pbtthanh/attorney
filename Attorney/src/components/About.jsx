@@ -1,47 +1,126 @@
-import { site } from '../data/site'
+import { useEffect, useState } from 'react'
+import { lawyers } from '../data/lawyers'
 
-const stats = [
-  { num: '15+', label: 'Năm kinh nghiệm' },
-  { num: '500+', label: 'Vụ việc đã xử lý' },
-  { num: '8', label: 'Lĩnh vực hành nghề' },
-  { num: '98%', label: 'Khách hàng hài lòng' },
-]
+const SLIDE_INTERVAL = 3000
 
 export default function About() {
+  const [index, setIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    if (paused) return
+    const id = setTimeout(() => {
+      setIndex((i) => (i + 1) % lawyers.length)
+    }, SLIDE_INTERVAL)
+    return () => clearTimeout(id)
+  }, [index, paused])
+
+  const goTo = (i) =>
+    setIndex(((i % lawyers.length) + lawyers.length) % lawyers.length)
+  const prev = () => goTo(index - 1)
+  const next = () => goTo(index + 1)
+
   return (
     <section id="about" className="about">
-      <div className="container about-grid">
-        <div className="about-media" aria-hidden="true">
-          <div className="about-frame">
-            <div className="about-frame-inner"></div>
-          </div>
-        </div>
-        <div className="about-content">
-          <p className="eyebrow">Về tôi</p>
+      <div className="container">
+        <div className="section-head">
+          <p className="eyebrow">Về chúng tôi</p>
           <h2>
-            Luật sư <span className="accent">{site.brandShort}</span>
+            Đội ngũ <span className="accent">Luật sư & Chuyên gia pháp lý</span>
           </h2>
-          <p>
-            Tôi là luật sư hành nghề độc lập tại TP. Hồ Chí Minh, thành viên
-            Đoàn Luật sư TP.HCM, với nhiều năm kinh nghiệm trong tư vấn pháp
-            lý và tranh tụng. Tôi nhận tư vấn và đại diện cho cá nhân, hộ gia
-            đình cũng như doanh nghiệp vừa và nhỏ.
+          <p className="section-sub">
+            Chuyên nghiệp – Bản lĩnh – Tận tâm.
           </p>
-          <p>
-            Triết lý hành nghề của tôi đặt trên nền tảng của sự{' '}
-            <strong>chính trực</strong>, <strong>trách nhiệm</strong> và{' '}
-            <strong>hiệu quả</strong> — như một "đình trụ" vững chắc mà khách
-            hàng có thể tin cậy tựa vào trong mọi tình huống pháp lý.
-          </p>
+        </div>
 
-          <ul className="about-stats">
-            {stats.map((s) => (
-              <li key={s.label}>
-                <strong>{s.num}</strong>
-                <span>{s.label}</span>
-              </li>
+        <div
+          className="lawyer-slider"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <button
+            className="slider-arrow slider-arrow-prev"
+            onClick={prev}
+            aria-label="Luật sư trước"
+            type="button"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M15 18l-6-6 6-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          <div className="lawyer-slides">
+            {lawyers.map((l, i) => (
+              <article
+                key={l.id}
+                className={`lawyer-slide ${i === index ? 'is-active' : ''}`}
+                aria-hidden={i !== index}
+              >
+                <div className="lawyer-media">
+                  <div className="lawyer-frame">
+                    {l.photo ? (
+                      <img
+                        src={l.photo}
+                        alt={l.name}
+                        className="lawyer-photo"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="lawyer-initials" aria-hidden="true">
+                        {l.initials}
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="lawyer-content">
+                  <h3>{l.name}</h3>
+                  <p className="lawyer-role">{l.role}</p>
+                  {l.paragraphs.map((p, idx) => (
+                    <p key={idx}>{p}</p>
+                  ))}
+                </div>
+              </article>
             ))}
-          </ul>
+          </div>
+
+          <button
+            className="slider-arrow slider-arrow-next"
+            onClick={next}
+            aria-label="Luật sư kế tiếp"
+            type="button"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div className="slider-dots" role="tablist">
+          {lawyers.map((l, i) => (
+            <button
+              key={l.id}
+              type="button"
+              role="tab"
+              aria-selected={i === index}
+              aria-label={l.name}
+              className={`slider-dot ${i === index ? 'is-active' : ''}`}
+              onClick={() => goTo(i)}
+            />
+          ))}
         </div>
       </div>
     </section>

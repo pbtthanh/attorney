@@ -14,7 +14,7 @@ export default function TopBar() {
               strokeLinejoin="round"
             />
           </svg>
-          <a href={`tel:${site.phone.replace(/\./g, '')}`}>{site.phone}</a>
+          <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a>
         </div>
         <div className="topbar-item">
           <svg viewBox="0 0 24 24" className="topbar-icon" aria-hidden="true">

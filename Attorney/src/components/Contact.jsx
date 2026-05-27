@@ -34,12 +34,8 @@ export default function Contact() {
 
           <ul className="contact-list">
             <li>
-              <strong>Địa chỉ tiếp khách</strong>
-              <span>{site.address}</span>
-            </li>
-            <li>
-              <strong>Điện thoại</strong>
-              <a href={`tel:${site.phone.replace(/\./g, '')}`}>{site.phone}</a>
+              <strong>Hotline / Zalo</strong>
+              <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a>
             </li>
             <li>
               <strong>Email</strong>
@@ -48,6 +44,10 @@ export default function Contact() {
             <li>
               <strong>Giờ làm việc</strong>
               <span>{site.hours}</span>
+            </li>
+            <li>
+              <strong>Thông tin doanh nghiệp</strong>
+              <span>{site.address}</span>
             </li>
           </ul>
         </div>

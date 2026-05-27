@@ -5,16 +5,16 @@ export default function Hero() {
     <section id="home" className="hero">
       <div className="hero-bg" aria-hidden="true"></div>
       <div className="container hero-inner">
-        <p className="hero-eyebrow">Luật sư tư vấn pháp luật độc lập</p>
+        <p className="hero-eyebrow">{site.brand}</p>
         <h1 className="hero-title">
           Đồng hành pháp lý <br />
-          <span>vững như trụ đá</span>
+          <span>tin cậy</span>
         </h1>
         <p className="hero-slogan">"{site.slogan}"</p>
         <p className="hero-desc">
-          Tôi là luật sư hành nghề độc lập, cung cấp dịch vụ tư vấn và tranh
-          tụng cho cá nhân và doanh nghiệp — tận tâm, chuyên nghiệp và đặt
-          lợi ích của khách hàng lên hàng đầu.
+          Với đội ngũ Luật sư, Chuyên gia pháp lý chuyên nghiệp, có kinh
+          nghiệm thực chiến, chúng tôi tự tin mang lại cho khách hàng những
+          giải pháp tối ưu nhất.
         </p>
         <div className="hero-cta">
           <a href="#contact" className="btn btn-primary">

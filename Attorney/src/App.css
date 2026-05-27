@@ -60,7 +60,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 84px;
+  height: 100px;
 }
 
 .brand {
@@ -75,14 +75,26 @@
 }
 
 .brand-mark {
-  width: 44px;
-  height: 44px;
+  width: 80px;
+  height: 80px;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.brand-mark svg {
+@media (max-width: 560px) {
+  .brand-mark {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.brand-mark svg,
+.brand-mark img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .brand-text {
@@ -362,126 +374,205 @@
   }
 }
 
-/* ===================== ABOUT ===================== */
+/* ===================== ABOUT / LAWYER SLIDER ===================== */
 .about {
   padding: 80px 0 100px;
   background: var(--bg-soft);
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 64px;
-  align-items: center;
-}
-
-.about-media {
+.lawyer-slider {
   position: relative;
-  aspect-ratio: 4 / 5;
+  margin-top: 48px;
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
 }
 
-.about-frame {
-  position: absolute;
-  inset: 0;
+.lawyer-slides {
+  position: relative;
+  flex: 1;
+  display: grid;
+  grid-template-areas: 'stack';
+}
+
+.lawyer-slide {
+  grid-area: stack;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  align-items: center;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow);
+  padding: 40px 48px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.lawyer-slide.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.lawyer-media {
+  aspect-ratio: 4 / 5;
+  max-width: 280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.lawyer-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, var(--navy), var(--navy-soft));
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.about-frame::before {
+.lawyer-frame::before {
   content: '';
   position: absolute;
-  inset: 20px;
+  inset: 16px;
   border: 1px solid rgba(216, 185, 130, 0.4);
   border-radius: var(--radius);
   pointer-events: none;
 }
 
-.about-frame-inner {
+.lawyer-initials {
+  font-family: var(--serif);
+  font-size: 72px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 2px;
+  z-index: 1;
+}
+
+.lawyer-photo {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(216, 185, 130, 0.25),
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 70% 80%,
-      rgba(216, 185, 130, 0.15),
-      transparent 55%
-    );
-}
-
-.about-frame::after {
-  content: '⚖';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 140px;
-  color: var(--gold);
-  opacity: 0.8;
-  font-family: var(--serif);
-}
-
-.about-content h2 {
-  font-size: clamp(28px, 3.6vw, 40px);
-  margin-bottom: 20px;
-}
-
-.about-content p {
-  color: var(--text);
-  font-size: 16px;
-  line-height: 1.75;
-}
-
-.about-stats {
-  list-style: none;
-  padding: 0;
-  margin: 32px 0 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.about-stats li {
-  text-align: center;
-  padding: 20px 8px;
-  border-top: 3px solid var(--gold);
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-}
-
-.about-stats strong {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
+}
+
+.lawyer-content h3 {
   font-family: var(--serif);
-  font-size: 28px;
+  font-size: clamp(24px, 3vw, 32px);
   color: var(--text-strong);
+  margin: 0 0 6px;
 }
 
-.about-stats span {
-  display: block;
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 4px;
+.lawyer-role {
+  color: var(--gold-dark);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+.lawyer-content p {
+  color: var(--text);
+  font-size: 15.5px;
+  line-height: 1.75;
+  margin: 0 0 14px;
+}
+
+.lawyer-content p:last-child {
+  margin-bottom: 0;
+}
+
+.slider-arrow {
+  flex-shrink: 0;
+  align-self: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-strong);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.slider-arrow:hover {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+}
+
+.slider-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 0;
+  background: #cbd5e1;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.slider-dot.is-active {
+  background: var(--gold);
+  transform: scale(1.3);
 }
 
 @media (max-width: 900px) {
-  .about-grid {
+  .lawyer-slider {
+    flex-direction: column;
+  }
+  .lawyer-slide {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 24px;
+    padding: 28px 24px;
+    text-align: center;
   }
-  .about-media {
-    aspect-ratio: 16 / 10;
-    max-width: 500px;
-    margin: 0 auto;
-    width: 100%;
+  .lawyer-media {
+    max-width: 200px;
   }
-  .about-stats {
-    grid-template-columns: repeat(2, 1fr);
+  .lawyer-content p {
+    text-align: left;
+  }
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+  .slider-arrow-prev {
+    left: -8px;
+  }
+  .slider-arrow-next {
+    right: -8px;
   }
 }
 
@@ -970,6 +1061,17 @@
   padding-bottom: 56px;
 }
 
+.footer-logo-img {
+  display: block;
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  margin-bottom: 14px;
+}
+
 .footer-brand .footer-logo {
   font-family: var(--serif);
   font-size: 26px;
@@ -988,6 +1090,13 @@
   color: var(--gold-light) !important;
   margin-top: 12px;
   font-size: 14px;
+}
+
+.footer-motto {
+  font-style: italic;
+  color: #cbd5e1 !important;
+  margin-top: 8px;
+  font-size: 13px;
 }
 
 .footer-col h4 {

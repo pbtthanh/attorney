@@ -4,8 +4,6 @@ import Hero from './components/Hero'
 import Pillars from './components/Pillars'
 import About from './components/About'
 import Services from './components/Services'
-import Experience from './components/Experience'
-import News from './components/News'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import './App.css'
@@ -20,8 +18,6 @@ export default function App() {
         <Pillars />
         <About />
         <Services />
-        <Experience />
-        <News />
         <Contact />
       </main>
       <Footer />
