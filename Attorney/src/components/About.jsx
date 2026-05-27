@@ -39,7 +39,7 @@ export default function About() {
           onMouseLeave={() => setPaused(false)}
         >
           <button
-            className="slider-arrow slider-arrow-prev"
+            className="slider-arrow slider-arrow-side slider-arrow-prev"
             onClick={prev}
             aria-label="Luật sư trước"
             type="button"
@@ -91,7 +91,7 @@ export default function About() {
           </div>
 
           <button
-            className="slider-arrow slider-arrow-next"
+            className="slider-arrow slider-arrow-side slider-arrow-next"
             onClick={next}
             aria-label="Luật sư kế tiếp"
             type="button"
@@ -109,18 +109,56 @@ export default function About() {
           </button>
         </div>
 
-        <div className="slider-dots" role="tablist">
-          {lawyers.map((l, i) => (
-            <button
-              key={l.id}
-              type="button"
-              role="tab"
-              aria-selected={i === index}
-              aria-label={l.name}
-              className={`slider-dot ${i === index ? 'is-active' : ''}`}
-              onClick={() => goTo(i)}
-            />
-          ))}
+        <div className="slider-controls">
+          <button
+            className="slider-arrow slider-arrow-bottom slider-arrow-prev"
+            onClick={prev}
+            aria-label="Luật sư trước"
+            type="button"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M15 18l-6-6 6-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
+          <div className="slider-dots" role="tablist">
+            {lawyers.map((l, i) => (
+              <button
+                key={l.id}
+                type="button"
+                role="tab"
+                aria-selected={i === index}
+                aria-label={l.name}
+                className={`slider-dot ${i === index ? 'is-active' : ''}`}
+                onClick={() => goTo(i)}
+              />
+            ))}
+          </div>
+
+          <button
+            className="slider-arrow slider-arrow-bottom slider-arrow-next"
+            onClick={next}
+            aria-label="Luật sư kế tiếp"
+            type="button"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M9 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
