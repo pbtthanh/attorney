@@ -12,7 +12,7 @@ export const site = {
   address:
     'T&A Consulting – MSDN: 3604101158 do Sở Tài chính Thành phố Đồng Nai cấp',
   barLicense: 'Thẻ Luật sư do Liên đoàn Luật sư Việt Nam cấp',
-  memberOf: 'Đoàn Luật sư Việt Nam',
+  memberOf: '',
   nav: [
     { label: 'Trang chủ', href: '#home' },
     { label: 'Về chúng tôi', href: '#about' },

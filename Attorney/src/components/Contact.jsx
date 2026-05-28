@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { site } from '../data/site'
 
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY
+
 export default function Contact() {
   const [form, setForm] = useState({
     name: '',
@@ -9,16 +12,62 @@ export default function Contact() {
     subject: '',
     message: '',
   })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'sent' | 'error'
+  const [errorMsg, setErrorMsg] = useState('')
 
   const update = (k) => (e) => setForm({ ...form, [k]: e.target.value })
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
-    setSent(true)
-    setTimeout(() => setSent(false), 4000)
-    setForm({ name: '', phone: '', email: '', subject: '', message: '' })
+
+    if (!WEB3FORMS_KEY) {
+      setStatus('error')
+      setErrorMsg('Chưa cấu hình API key. Vui lòng đặt VITE_WEB3FORMS_KEY trong file .env.')
+      return
+    }
+
+    setStatus('sending')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          from_name: `${site.brand} – Đặt lịch tư vấn`,
+          subject: form.subject
+            ? `[${site.brand}] ${form.subject} – ${form.name}`
+            : `[${site.brand}] Yêu cầu tư vấn từ ${form.name}`,
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          field_subject: form.subject,
+          message: form.message,
+          replyto: form.email || undefined,
+        }),
+      })
+
+      const data = await res.json()
+
+      if (res.ok && data.success) {
+        setStatus('sent')
+        setForm({ name: '', phone: '', email: '', subject: '', message: '' })
+        setTimeout(() => setStatus('idle'), 6000)
+      } else {
+        setStatus('error')
+        setErrorMsg(data.message || 'Gửi yêu cầu thất bại. Vui lòng thử lại.')
+      }
+    } catch (err) {
+      setStatus('error')
+      setErrorMsg('Không thể kết nối tới máy chủ. Vui lòng kiểm tra mạng và thử lại.')
+    }
   }
+
+  const sending = status === 'sending'
 
   return (
     <section id="contact" className="contact">
@@ -52,7 +101,7 @@ export default function Contact() {
           </ul>
         </div>
 
-        <form className="contact-form" onSubmit={submit}>
+        <form className="contact-form" onSubmit={submit} noValidate>
           <div className="row">
             <label>
               <span>Họ và tên *</span>
@@ -61,6 +110,7 @@ export default function Contact() {
                 value={form.name}
                 onChange={update('name')}
                 placeholder="Nguyễn Văn A"
+                disabled={sending}
               />
             </label>
             <label>
@@ -71,6 +121,7 @@ export default function Contact() {
                 value={form.phone}
                 onChange={update('phone')}
                 placeholder="09xx xxx xxx"
+                disabled={sending}
               />
             </label>
           </div>
@@ -81,6 +132,7 @@ export default function Contact() {
               value={form.email}
               onChange={update('email')}
               placeholder="email@example.com"
+              disabled={sending}
             />
           </label>
           <label>
@@ -89,6 +141,7 @@ export default function Contact() {
               value={form.subject}
               onChange={update('subject')}
               placeholder="Ví dụ: Hôn nhân gia đình"
+              disabled={sending}
             />
           </label>
           <label>
@@ -99,18 +152,26 @@ export default function Contact() {
               value={form.message}
               onChange={update('message')}
               placeholder="Mô tả ngắn gọn vấn đề của Quý khách..."
+              disabled={sending}
             />
           </label>
 
-          <button type="submit" className="btn btn-primary btn-block">
-            Gửi yêu cầu tư vấn
+          <button
+            type="submit"
+            className="btn btn-primary btn-block"
+            disabled={sending}
+          >
+            {sending ? 'Đang gửi…' : 'Gửi yêu cầu tư vấn'}
           </button>
 
-          {sent && (
+          {status === 'sent' && (
             <p className="contact-sent">
-              Đã nhận được yêu cầu của Quý khách. Tôi sẽ liên hệ trong thời
-              gian sớm nhất.
+              Đã nhận được yêu cầu của Quý khách. Chúng tôi sẽ liên hệ trong
+              thời gian sớm nhất.
             </p>
+          )}
+          {status === 'error' && (
+            <p className="contact-error">{errorMsg}</p>
           )}
         </form>
       </div>
