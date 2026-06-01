@@ -6,10 +6,7 @@ export default function Hero() {
       <div className="hero-bg" aria-hidden="true"></div>
       <div className="container hero-inner">
         <p className="hero-eyebrow">{site.brand}</p>
-        <h1 className="hero-title">
-          Đồng hành pháp lý <br />
-          <span>tin cậy</span>
-        </h1>
+        <h1 className="hero-title">Đồng hành pháp lý tin cậy</h1>
         <p className="hero-slogan">"{site.slogan}"</p>
         <p className="hero-desc">
           Với đội ngũ Luật sư, Chuyên gia pháp lý chuyên nghiệp, có kinh

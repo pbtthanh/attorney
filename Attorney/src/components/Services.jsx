@@ -8,7 +8,7 @@ export default function Services() {
           <p className="eyebrow">Lĩnh vực hoạt động</p>
           <h2>Dịch vụ pháp lý toàn diện</h2>
           <p className="section-sub">
-            Tám lĩnh vực cốt lõi, đáp ứng nhu cầu pháp lý của khách hàng cá
+            Các lĩnh vực cốt lõi, đáp ứng nhu cầu pháp lý của khách hàng cá
             nhân và doanh nghiệp.
           </p>
         </div>

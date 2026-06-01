@@ -77,8 +77,8 @@ export default function Contact() {
           <h2>Đặt lịch tư vấn</h2>
           <p>
             Gửi yêu cầu của Quý khách qua biểu mẫu bên cạnh hoặc liên hệ trực
-            tiếp qua các kênh dưới đây. Tôi sẽ phản hồi trong vòng 24 giờ làm
-            việc.
+            tiếp qua các kênh dưới đây. Chúng tôi sẽ phản hồi trong vòng 5 giờ
+            làm việc.
           </p>
 
           <ul className="contact-list">

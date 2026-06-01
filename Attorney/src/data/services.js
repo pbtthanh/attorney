@@ -7,11 +7,11 @@ export const services = [
     icon: 'M3 10h18M5 6h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z',
   },
   {
-    id: 'hinh-su',
-    title: 'Luật Hình sự',
+    id: 'kinh-doanh',
+    title: 'Kinh doanh – Thương mại – Tài chính – Ngân hàng',
     description:
-      'Bào chữa, bảo vệ quyền lợi hợp pháp trong các vụ án hình sự; tham gia tố tụng từ giai đoạn điều tra đến xét xử phúc thẩm.',
-    icon: 'M12 3l8 4v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z',
+      'Soạn thảo, rà soát hợp đồng; giải quyết tranh chấp về kinh doanh thương mại, tài chính ngân hàng tại Tòa án hoặc Trung tâm Trọng tài.',
+    icon: 'M3 7h18M5 7l2 13h10l2-13M9 11v6M15 11v6',
   },
   {
     id: 'hanh-chinh',
@@ -35,11 +35,11 @@ export const services = [
     icon: 'M12 21s-7-4.35-7-10a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.65-7 10-7 10z',
   },
   {
-    id: 'kinh-doanh',
-    title: 'Kinh doanh – Thương mại',
+    id: 'hinh-su',
+    title: 'Luật Hình sự',
     description:
-      'Soạn thảo, rà soát hợp đồng; giải quyết tranh chấp kinh doanh thương mại tại Tòa án và Trung tâm Trọng tài.',
-    icon: 'M3 7h18M5 7l2 13h10l2-13M9 11v6M15 11v6',
+      'Bào chữa, bảo vệ quyền lợi hợp pháp trong các vụ án hình sự; tham gia tố tụng từ giai đoạn điều tra đến xét xử phúc thẩm.',
+    icon: 'M12 3l8 4v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z',
   },
   {
     id: 'lao-dong',

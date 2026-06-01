@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Lĩnh vực</h4>
           <ul className="footer-links">
-            {services.slice(0, 6).map((s) => (
+            {services.map((s) => (
               <li key={s.id}>
                 <a href="#services">{s.title}</a>
               </li>

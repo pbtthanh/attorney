@@ -26,7 +26,7 @@ export default function About() {
         <div className="section-head">
           <p className="eyebrow">Về chúng tôi</p>
           <h2>
-            Đội ngũ <span className="accent">Luật sư & Chuyên gia pháp lý</span>
+            Đội ngũ Luật sư & Chuyên gia pháp lý
           </h2>
           <p className="section-sub">
             Chuyên nghiệp – Bản lĩnh – Tận tâm.

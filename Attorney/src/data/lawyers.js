@@ -10,7 +10,7 @@ export const lawyers = [
     initials: 'ĐT',
     photo: a1,
     paragraphs: [
-      'Luật sư Đình Trụ – Giám đốc Công ty T&A Consulting – là luật sư có nhiều năm kinh nghiệm trong lĩnh vực tranh tụng, dân sự, đất đai, thừa kế, tài chính – ngân hàng, bất động sản và giải quyết tranh chấp tại Tòa án. Đặc biệt, Luật sư Đình Trụ có hơn 5 năm kinh nghiệm làm việc với các ngân hàng lớn tại Việt Nam trong việc xử lý nợ, thu hồi công nợ và đại diện khách hàng giải quyết các vụ việc phức tạp liên quan đến nghĩa vụ tài chính và tài sản.',
+      'Luật sư Đình Trụ – Giám đốc Công ty T&A Consulting – là luật sư có nhiều năm kinh nghiệm trong lĩnh vực tranh tụng, dân sự, đất đai, thừa kế, tài chính – ngân hàng, bất động sản và giải quyết tranh chấp tại Tòa án. Đặc biệt, Luật sư Đình Trụ có hơn 5 năm kinh nghiệm làm việc với các ngân hàng hàng đầu tại Việt Nam trong hoạt động xử lý nợ, thu hồi công nợ và đại diện khách hàng giải quyết các vụ việc phức tạp liên quan đến nghĩa vụ tài chính và tài sản.',
       'Với tư duy pháp lý chiến lược, kỹ năng tranh tụng chuyên sâu và kinh nghiệm thực tiễn phong phú, Luật sư Đình Trụ luôn tập trung xây dựng các giải pháp hiệu quả nhằm bảo vệ tối đa quyền và lợi ích hợp pháp của khách hàng. Sự bản lĩnh, chuyên môn vững vàng và tác phong làm việc chuyên nghiệp đã góp phần khẳng định uy tín của ông trong lĩnh vực pháp lý và tranh tụng.',
     ],
   },
@@ -21,7 +21,7 @@ export const lawyers = [
     initials: 'AL',
     photo: a2,
     paragraphs: [
-      'Luật sư Annie Le là chuyên gia trong các lĩnh vực đầu tư nước ngoài, thành lập doanh nghiệp, hợp đồng, pháp lý doanh nghiệp, giấy phép lao động cho người nước ngoài và các lĩnh vực dân sự, ly hôn có yếu tố nước ngoài, thừa kế và đất đai liên quan đến Việt kiều.',
+      'Luật sư Annie Le là Chuyên gia trong các lĩnh vực đầu tư nước ngoài, thành lập doanh nghiệp, pháp lý doanh nghiệp, hợp đồng, giấy phép lao động cho người nước ngoài và các lĩnh vực đất đai, dân sự, ly hôn liên quan đến người nước ngoài (có yếu tố nước ngoài).',
       'Với kinh nghiệm thực tiễn trong việc hỗ trợ khách hàng trong nước và quốc tế, Luật sư Annie Le luôn mang đến các giải pháp pháp lý hiệu quả, linh hoạt và phù hợp với nhu cầu thực tiễn của từng khách hàng.',
     ],
   },
